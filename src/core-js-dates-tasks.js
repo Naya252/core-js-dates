@@ -249,8 +249,26 @@ function getWeekNumberByDate(date) {
  * Date(2024, 0, 13) => Date(2024, 8, 13)
  * Date(2023, 1, 1) => Date(2023, 9, 13)
  */
-function getNextFridayThe13th(/* date */) {
-  throw new Error('Not implemented');
+function getNextFridayThe13th(date) {
+  const curDate = new Date(date);
+  curDate.setDate(13);
+  let nextFriday = null;
+
+  while (!nextFriday) {
+    if (curDate.getDay() === 5) {
+      nextFriday = curDate;
+      return curDate;
+    }
+
+    curDate.setMonth(curDate.getMonth() + 1);
+
+    if (curDate.getDay() === 5) {
+      nextFriday = curDate;
+      return curDate;
+    }
+  }
+
+  return nextFriday;
 }
 
 /**
