@@ -62,8 +62,34 @@ function getDayName(date) {
  * Date('2024-02-13T00:00:00Z') => Date('2024-02-16T00:00:00Z')
  * Date('2024-02-16T00:00:00Z') => Date('2024-02-23T00:00:00Z')
  */
-function getNextFriday(/* date */) {
-  throw new Error('Not implemented');
+function getNextFriday(date) {
+  const curDate = new Date(date);
+  const curDay = curDate.getUTCDay();
+  const addDays = () => {
+    switch (curDay) {
+      case 0:
+        return 5;
+      case 1:
+        return 4;
+      case 2:
+        return 3;
+      case 3:
+        return 2;
+      case 4:
+        return 1;
+      case 5:
+        return 7;
+      case 6:
+        return 6;
+      default:
+        return 5;
+    }
+  };
+
+  const daysToAdd = addDays();
+  curDate.setUTCDate(curDate.getUTCDate() + daysToAdd);
+
+  return curDate;
 }
 
 /**
